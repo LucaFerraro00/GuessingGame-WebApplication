@@ -1,0 +1,13 @@
+.below-nav {
+    padding-top: 5rem;
+  }
+
+  
+.icon-size {
+  font-size: 2rem;
+}
+
+
+.over-row  :hover{
+  cursor: pointer;
+}
