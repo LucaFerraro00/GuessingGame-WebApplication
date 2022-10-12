@@ -1,5 +1,71 @@
-# Exam #2: "Indovinelli"
-## Student: s301843 FERRARO LUCA 
+# Requirements
+
+
+Progettare e implementare un’applicazione web per gestire una piattaforma di gioco che si basa sul
+pubblicare e risolvere indovinelli.
+Nota: nel seguito, “utente” significa un qualsiasi utente che sia autenticato (quindi logged-in), mentre
+visitatore anonimo è un utente che non è logged-in.
+Ogni utente dell’applicazione può pubblicare uno o più indovinelli, che gli altri utenti possono provare a
+risolvere.
+Un indovinello è caratterizzato da una domanda (una stringa di testo), un livello di difficoltà (facile, medio,
+difficile), una durata (un numero intero di secondi, da 30 a 600), la risposta corretta (una stringa di testo),
+e 2 suggerimenti (stringhe di testo). Un indovinello può essere pubblicato da un qualsiasi utente, e tutti
+gli altri utenti possono provare a rispondere, nella durata prevista. La durata è misurata a partire dalla
+prima risposta inviata (non dal momento di pubblicazione dell’indovinello). Il primo utente che fornisce la
+risposta corretta ottiene un punteggio, l’indovinello diventa “chiuso”, e non possono essere date ulteriori
+risposte. Se nessun utente fornisce le risposte corrette all’interno della durata prevista l’indovinello
+diventa automaticamente “chiuso”.
+In particolare, il sistema deve supportare le seguenti funzionalità:
+- Un utente può creare un nuovo indovinello, fornendo tutte le necessarie informazioni. Un
+indovinello nuovo è creato in stato “aperto”, ossia che consente di inviare risposte.
+- Un utente può vedere lo stato di ognuno dei suoi indovinelli che ha pubblicato come autore: Se l’indovinello è “chiuso”, l’autore vedrà tutte le risposte che sono state date, la risposta corretta decisa dall’autore dell’indovinello, e l’indicazione del vincitore se presente; Se l’indovinello è “aperto”, l’autore vedrà tutte le risposte correnti (aggiornate ogni
+secondo), e un conto alla rovescia (count-down) che mostra il tempo rimanente.
+- Qualsiasi utente può vedere la lista degli indovinelli, divisi tra “aperti” e “chiusi”, vedendo la
+domanda ed il suo livello di difficoltà: Selezionando un indovinello “chiuso” verranno mostrate tutte le risposte che sono state
+date, la risposta corretta decisa dall’autore dell’indovinello, e l’indicazione del vincitore
+se presente; Selezionando un indovinello “aperto” si avrà l’opportunità di rispondere (ovviamente
+senza che siano mostrate le altre risposte). Ogni utente può fornire al massimo una sola
+risposta per ogni indovinello. Mentre fornisce la risposta verrà mostrato un conto alla
+rovescia (count-down) che mostra il tempo rimanente. Se il tempo rimanente è minore
+del 50%, il primo suggerimento viene mostrato. Se il tempo rimanente è minore del 25%,
+anche il secondo suggerimento viene mostrato. Se la risposta è corretta, l’indovinello
+diventa immediatamente “chiuso” e l’utente otterrà un punteggio pari a 3, 2 o 1 punti,
+secondo la difficoltà dell’indovinello (rispettivamente difficile, medio, facile).
+- I visitatori anonimi vedranno la lista degli indovinelli (domanda e difficoltà) ma non vedranno né
+le risposte date né la risposta corretta.
+- I visitatori anonimi e gli utenti possono vedere la classifica dei migliori 3 punteggi ottenuti (“top-
+3”). Nel caso di pari merito, devono essere mostrati tutti gli utenti che hanno i 3 punteggi più alti.
+L’organizzazione di queste funzionalità in differenti schermate (e potenzialmente in differenti routes) è
+lasciata allo studente ed è oggetto di valutazione.
+## Requisiti del progetto
+- L’architettura dell’applicazione e il codice sorgente devono essere sviluppati adottando le migliori
+pratiche (best practice) di sviluppo del software, in particolare per le single-page application (SPA)
+che usano React e HTTP API.
+- Il progetto deve essere realizzato come applicazione React, che interagisce con un’API HTTP
+implementata in Node+Express. Il database deve essere memorizzato in un file SQLite.
+- La comunicazione tra il client ed il server deve seguire il pattern “two servers”, configurando
+correttamente CORS, e React deve girare in modalità “development”.
+- La directory radice del progetto deve contenere un file README.md e contenere due
+subdirectories (client e server). Il progetto deve poter essere lanciato con i comandi: “cd
+server; nodemon index.js” e “cd client; npm start”. Viene fornito uno scheletro
+delle directory del progetto. Si può assumere che nodemon sia già installato a livello di sistema.
+- L’intero progetto deve essere consegnato tramite GitHub, nel repository creato da GitHub
+Classroom.
+- Il progetto non deve includere le directory node_modules. Esse devono essere ricreabili tramite
+il comando “npm install”, subito dopo “git clone”.
+- Il progetto può usare librerie popolari e comunemente adottate (come per esempio day.js,
+react-bootstrap, ecc.), se applicabili e utili. Tali librerie devono essere correttamente
+dichiarate nei file package.json e package-lock.json cosicché il comando npm install
+le possa scaricare ed installare tutte.
+- L’autenticazione dell’utente (login) e l’accesso alle API devono essere realizzati tramite
+passport.js e cookie di sessione, utilizzando il meccanismo visto a lezione. Non è richiesto
+alcun ulteriore meccanismo di protezione. La registrazione di un nuovo utente non è richiesta.
+## Requisiti del database
+- Il database del progetto deve essere implementato a cura dello studente, e deve essere
+precaricato con almeno 5 utenti, di cui almeno 3 nel top-3. Tutti gli utenti devono avere almeno
+due indovinelli chiusi ed uno aperto.
+
+
 
 ## React Client Application Routes
 
